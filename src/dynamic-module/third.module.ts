@@ -42,7 +42,7 @@ export class ThirdModule {
       exports: [ThirdService, THIRD_MODULE_OPTIONS],
     };
   }
-  //TODO 创建异步配置提供者
+  //创建异步配置提供者
   private static createAsyncOptions(options: IThirdModuleAsyncOptions, validateProvider: Provider[]): Provider[] {
     //useFactory or useExisting 这里不需要额外的验证器提供者，依赖在inject中，不需要nestjs帮忙创建实例
     //!这里不需要provider2,因为inject已经提供了
@@ -82,7 +82,7 @@ export class ThirdModule {
     ];
   }
 
-  //TODO 创建配置提供者
+  //创建配置提供者
   private static createAsyncOptionsProvider(
     options: IThirdModuleAsyncOptions,
     validatorProvider: Provider[],
@@ -155,7 +155,7 @@ export class ThirdModule {
     };
   }
 
-  //TODO 执行配置验证，register可用
+  //执行配置验证，register可用
   private static validateOptions(options: IThirdModuleOptions): void {
     if (!!options.validator) {
       const thirdOptions = options as ThirdOptions;
@@ -166,7 +166,7 @@ export class ThirdModule {
       }
     }
   }
-  //TODO 执行配置验证，registerAsync可用
+  // 执行配置验证，registerAsync可用
   private static validateAsyncOptions(options: IThirdModuleOptions, validators: ThirdConfigValidator[]): void {
     if (validators.length > 0) {
       const thirdOptions = options as ThirdOptions;
@@ -176,7 +176,7 @@ export class ThirdModule {
     }
   }
 
-  //TODO 从extraProviders中提取验证器
+  // 从extraProviders中提取验证器
   private static extraValidatorFromExtraProviders(options: Provider[]): Provider[] {
     return options.filter((provider) => {
       //类provider validator
@@ -219,7 +219,7 @@ export class ThirdModule {
     });
   }
 
-  //TODO 从验证器中提取令牌
+  // 从验证器中提取令牌
   private static extractValidatorTokens(validatorProviders: Provider[]): unknown[] {
     return validatorProviders.map((provider) => {
       if (typeof provider === 'function') {

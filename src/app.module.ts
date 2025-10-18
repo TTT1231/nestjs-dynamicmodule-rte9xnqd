@@ -8,6 +8,7 @@ import { MyThirdConfigValidator } from './validator/third-config.validator';
 import type { IThirdModuleAsyncFactory, IThirdModuleOptions, ThirdOptions } from './dynamic-module/third-module';
 import { Test1Module } from './test1/test1.module';
 import { MyThirdConfigValidator2 } from './validator/third-config2.validator';
+import { ForRootModule } from './forRoot-module/forRoot.module';
 
 // ==================== 工厂类示例 ====================
 // 方式1: 创建一个配置工厂类（用于 useClass）
@@ -40,6 +41,10 @@ class ThirdConfigFactoryWithConfigService implements IThirdModuleAsyncFactory {
       isGlobal: true,
       cache: true,
       load: [ThirdConfig], // 加载 ThirdConfig
+    }),
+    //==================================ForRoot ===============================
+    ForRootModule.forRoot({
+      someKey: 'someValue',
     }),
 
     // ==================== 使用方式 1: useFactory (最简单) ====================

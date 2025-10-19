@@ -9,6 +9,7 @@ import type { IThirdModuleAsyncFactory, IThirdModuleOptions, ThirdOptions } from
 import { Test1Module } from './test1/test1.module';
 import { MyThirdConfigValidator2 } from './validator/third-config2.validator';
 import { ForRootModule } from './forRoot-module/forRoot.module';
+import { DevtoolsModule } from '@nestjs/devtools-integration';
 
 // ==================== 工厂类示例 ====================
 // 方式1: 创建一个配置工厂类（用于 useClass）
@@ -37,6 +38,9 @@ class ThirdConfigFactoryWithConfigService implements IThirdModuleAsyncFactory {
 
 @Module({
   imports: [
+    DevtoolsModule.register({
+      http: true,
+    }),
     ConfigModule.forRoot({
       isGlobal: true,
       cache: true,
@@ -187,7 +191,7 @@ class ThirdConfigFactoryWithConfigService implements IThirdModuleAsyncFactory {
     // ==================== 使用方式 12: 结合 ConfigModule.forFeature ====================
     // 使用 forFeature 加载特定配置文件
     ThirdModule.registerAsync({
-      imports: [ConfigModule.forFeature(ThirdConfig)],
+      // imports: [ConfigModule.forFeature(ThirdConfig)],
       useFactory: (configService: ConfigService) => {
         // ThirdConfig 返回的配置会被合并到 ConfigService 中
         const config = configService.get('apiKey'); // 直接获取 ThirdConfig 导出的值

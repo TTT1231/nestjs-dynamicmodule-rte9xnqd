@@ -1,15 +1,12 @@
-import { Global, DynamicModule, Module } from '@nestjs/common';
+import { DynamicModule, Module } from '@nestjs/common';
 import { ForRootService } from './forRoot.service';
 import { FOR_ROOT_MODULE_OPTIONS, type ForRootModuleOptions } from './forRoot.constants';
-
-// 重新导出以保持向后兼容
-export { FOR_ROOT_MODULE_OPTIONS, type ForRootModuleOptions } from './forRoot.constants';
 
 @Module({})
 export class ForRootModule {
   public static forRoot(options: ForRootModuleOptions): DynamicModule {
     return {
-      global: true, // 明确声明为全局模块
+      global: false, // ✅ 不声明为全局模块，避免与 ConfigHostModule 的三角循环依赖
       module: ForRootModule,
       providers: [
         {

@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import type { IThirdModuleOptions } from './dynamic-module/third-module';
 import { THIRD_MODULE_OPTIONS } from './dynamic-module/constant';
-import { FOR_ROOT_MODULE_OPTIONS, type ForRootModuleOptions } from './forRoot-module/forRoot.module';
+import { FOR_ROOT_MODULE_OPTIONS, type ForRootModuleOptions } from './forRoot-module/forRoot.constants';
 import { ForRootService } from './forRoot-module/forRoot.service';
 
 @Injectable()
